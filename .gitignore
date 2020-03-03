@@ -1,0 +1,9 @@
+.idea/
+swagger/**
+
+go.sum
+
+pkg
+**/*.exe
+**/*.zip
+**/*.tmp

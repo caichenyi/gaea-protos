@@ -1,0 +1,113 @@
+syntax = "proto3";
+
+package userService;
+
+service UserService {
+    rpc RpcAuthUser(RpcAuthUserRequest) returns(RpcAuthUserRequest){}
+    rpc RpcCreateUser(RpcCreateUserRequest) returns(RpcCreateUserRequest){}
+    rpc RpcDeleteUser(RpcDeleteUserRequest) returns(RpcDeleteUserRequest){}
+    rpc RpcModifyUser(RpcModifyUserRequest) returns(RpcModifyUserResponse){}
+    rpc RpcModifyUserPassword(RpcModifyUserPasswordRequest) returns(RpcModifyUserPasswordResponse){}
+    rpc RpcGetUserById(RpcGetUserByIdRequest) returns(RpcGetUserByIdResponse){}
+    rpc RpcGetUsers(RpcGetUsersRequest) returns(RpcGetUsersResponse){}
+}
+
+
+// AuthUser
+message RpcAuthUserRequest {
+    string userDirectory = 1;
+    string username = 2;
+    string password = 3;
+}
+
+message RpcAuthUserResponse {
+    bool result = 1;
+    string authToken = 2;
+}
+
+
+// CreateUser
+message RpcCreateUserRequest {
+    string userId = 1;
+    string userDirectoryId = 2;
+    string username = 3;
+    string employeeId = 4;
+    string groupId = 5;
+}
+
+message RpcCreateUserResponse {
+    bool result = 1;
+}
+
+
+// 删除用户
+message RpcDeleteUserRequest {
+    string userId = 1;
+}
+
+message RpcDeleteUserResponse {
+    bool result = 1;
+}
+
+
+// ModifyUserInfo
+message RpcModifyUserRequest {
+    string userId = 1;
+    string userDirectoryId = 2;
+    string username = 3;
+    string locked = 4;
+    string closed = 5;
+    string employeeId = 6;
+    string groupId = 7;
+}
+
+message RpcModifyUserResponse {
+    bool result = 1;
+}
+
+
+// ModifyUserPassword
+message RpcModifyUserPasswordRequest {
+    string userId = 1;
+    string oldPassword = 2;
+    string newPassword = 3;
+}
+
+message RpcModifyUserPasswordResponse {
+    bool result = 1;
+}
+
+
+// GetUserById
+message RpcGetUserByIdRequest {
+    string  userId = 1;
+}
+
+message RpcGetUserByIdResponse {
+    string userId = 1;
+    string userDirectoryId = 2;
+    string username = 3;
+    string locked = 4;
+    string closed = 5;
+    string employeeId = 6;
+    string groupId = 7;
+}
+
+
+// GetUsers
+message RpcGetUsersRequest {
+}
+
+message RpcGetUsersResponse {
+    repeated User users = 1;
+}
+
+message User {
+    string userId = 1;
+    string userDirectoryId = 2;
+    string username = 3;
+    string locked = 4;
+    string closed = 5;
+    string employeeId = 6;
+    string groupId = 7;
+}
